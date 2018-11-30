@@ -10,10 +10,8 @@ gnome-session/
 goa-1.0/
 gtk-2.0/
 gtk-3.0/
-i3
 ibus/
 nautilus/
-polybar
 pulse/
 ranger/
 README.md
@@ -21,5 +19,5 @@ spotify/
 update-notifier/
 user-dirs.dirs/
 user-dirs.locale/
-wal
+
 
