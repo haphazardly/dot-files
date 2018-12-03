@@ -27,7 +27,7 @@ cava/
 autostart/
 mimeapps.list
 gnome-initial-setup-done
-
-
+i3/*.save
+polybar/*.save
 
 
