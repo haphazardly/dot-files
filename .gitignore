@@ -6,6 +6,7 @@ discord/
 enchant/
 evolution/
 gedit/
+gnome-control-center/
 gnome-session/
 goa-1.0/
 gtk-2.0/
@@ -16,8 +17,8 @@ pulse/
 ranger/
 spotify/
 update-notifier/
-user-dirs.dirs/
-user-dirs.locale/
+user-dirs.dirs
+user-dirs.locale
 vivaldi/
 tizonia/
 kusti18/
