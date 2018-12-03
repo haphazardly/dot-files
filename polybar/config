@@ -1,4 +1,4 @@
-o;#######################
+;#######################
 ;#	Colors		
 ;#######################			
 
@@ -27,6 +27,8 @@ trans50 = #80000000
 trans75 = #BF000000
 trans90 = #F2000000
 
+shared_bg = ${colors.trans75}
+
 ;#######################
 ;#	Main		
 ;#######################
@@ -45,9 +47,9 @@ radius		= 0.0
 ;padding-right	= 0.0
 ;module-margin	= 0.0
 
-font-0	= "Overpass Mono:pixelsize=10;"
+font-0	= "Hack:pixelsize=10;"
  
-background	= ${colors.trans25}
+background	= ${colors.shared_bg}
 foreground	= ${colors.color7} 
 
 modules-right	= i3 
@@ -74,10 +76,10 @@ radius		= 0.0
 
 font-0	= "Overpass Mono:pixelsize=10;"
  
-background	= ${colors.trans25}
+background	= ${colors.shared_bg}
 foreground	= ${colors.color7} 
 
-modules-right	= cputemp gputemp i3
+modules-right	= filesystem cputemp gputemp i3
 modules-center	= xwindow
 modules-left	= date
 
@@ -224,3 +226,22 @@ tail = true
 exec-if = nvidia-smi
 exec = nvidia-smi --loop=1 --query-gpu=temperature.gpu,utilization.gpu,utilization.memory --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|GPU \2% \3% \1° 　|g'
 
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+mount-1 = /media/0f796d40-8409-4b1a-8c6e-ed4b8fc7e589
+mount-2 = /media/ded7f11c-d287-4912-8cac-a041080186d2
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 1
+spacing = 1
+; Display fixed precision values
+; Default: false
+fixed-values = false
+formated-mounted = <bar-used>
+label-mounted = %used%
+format-underline = #68D560 

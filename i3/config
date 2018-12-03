@@ -17,7 +17,7 @@ font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango: Hack 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -123,10 +123,13 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
+
+bindsym $mod+Shift+o exec "urxvt -e 'ranger'"
+
+
 
 gaps inner 20
-
 #for_window [class="^.*"] border pixel 1
 
 # resize window (you can also use the mouse for that)
@@ -154,6 +157,8 @@ mode "resize" {
 }
 
 
+set	$background	$HOME/Pictures/Wallpapers/dragons.png 
+
 bindsym $mod+r mode "resize"
 
 # Audio
@@ -161,15 +166,20 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id pactl set-default-sink 'alsa_output.pci-0000_00_1f.3.analog-stereo'
 
 # Screen	
-exec --no-startup-id xrandr --output HDMI-1-3 --off --output DVI-D-0 --off --output HDMI-1-2 --off --output HDMI-1-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-1 --off --output HDMI-0 --off --output DP-1 --off --output DP-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+exec_always --no-startup-id xrandr --output HDMI-1-1 --left-of DP-0 --mode 1920x1080 --pos 0x0 --rotate normal  --output DP-0 --primary --mode 1920x1080 --pos 1920x1080 --rotate normal --rate 144
 new_window pixel 2
 hide_edge_borders vertical
 
+exec_always --no-startup-id feh --bg-scale $background
 exec --no-startup-id compton -b 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id xrdb ~/.Xresources
-exec_always --no-startup-id feh --bg-scale $HOME/Pictures/Wallpapers/nebula.jpg
-exec_always --no-startup-id ~/.local/bin/wal -R -q -n
+exec_always --no-startup-id ~/.local/bin/wal -R -i $background -q -n --backend colorz
+
+
+
+# Hue Plus
+# exec_always --nostartup-id hue fixed FF0000
 
 # init resource		i	term color	backup
 # ----------------------------------------------------- 
@@ -208,6 +218,9 @@ client.placeholder      $1      $1      $8	$2	$4
 # bindsym $mod+d exec dmenu_run -nb "#00000" -nf "$6" -sb "$0" -sf "$2"
 bindsym $mod+d	exec "rofi -show run -fullscreen 'true' -padding 300	\
 			-color-window '$trans90, $trans90, $3'		\
-			-color-normal '$trans90, $1, $0, $3, $7'	\
+			-color-normal '$trans90, $1, $trans90, $3, $7'	\
 			-color-active '$4, $5, $5, $5, $5'		\
 			-color-urgent '$6, $6, $6, $6, $6' "		
+
+
+focus_follows_mouse no
