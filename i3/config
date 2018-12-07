@@ -17,7 +17,7 @@ font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Hack 8
+font pango:Hack 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -127,8 +127,6 @@ bindsym $mod+Shift+e exit
 
 bindsym $mod+Shift+o exec "urxvt -e 'ranger'"
 
-
-
 gaps inner 20
 #for_window [class="^.*"] border pixel 1
 
@@ -157,7 +155,7 @@ mode "resize" {
 }
 
 
-set	$background	$HOME/Pictures/Wallpapers/dragons.png 
+set	$background	$HOME/Pictures/Wallpapers/moss.jpg 
 
 bindsym $mod+r mode "resize"
 
@@ -171,10 +169,11 @@ new_window pixel 2
 hide_edge_borders vertical
 
 exec_always --no-startup-id feh --bg-scale $background
-exec --no-startup-id compton -b 
+exec_always --no-startup-id ~/.local/bin/wal -i $background -n --saturate 0.5 --backend colorz
+exec_always --no-startup-id compton -b 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ". ~/.config/scripts/wal2hue.sh"
 exec_always --no-startup-id xrdb ~/.Xresources
-exec_always --no-startup-id ~/.local/bin/wal -R -i $background -q -n --backend colorz
 
 
 
@@ -208,7 +207,7 @@ set			$trans90		#F2000000
 
 # class                 border  backgr.  text   ind     child_border
 # -----------------------------------------------------------------------
-client.focused          $1      $1	$1	$2	$3
+client.focused          $1      $2	$1	$0	$3
 client.focused_inactive	$0	$1	$8      $2	$0
 client.unfocused        $0	$1	$8      $2      $0
 client.urgent           $6	$1	$6	$2	$6
@@ -224,3 +223,6 @@ bindsym $mod+d	exec "rofi -show run -fullscreen 'true' -padding 300	\
 
 
 focus_follows_mouse no
+
+exec_always --no-startup-id "export MYVIMRC='~/.vim/.vimrc'"
+exec_always --no-startup-id "export VIMINIT='source $MYVIMRC'"
